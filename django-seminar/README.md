@@ -88,7 +88,6 @@ Then open:
 | --- | --- |
 | <http://127.0.0.1:8000/api/items/> | List and create items |
 | <http://127.0.0.1:8000/api/items/1/> | View, update or delete one item |
-| <http://127.0.0.1:8000/api/items/?search=pen> | Search items by name |
 | <http://127.0.0.1:8000/admin/> | Admin panel (log in with the user you created) |
 
 Stop the server with `Ctrl + C`.
@@ -98,6 +97,24 @@ To run the tests:
 ```bash
 python manage.py test
 ```
+
+## 4. Run the React frontend
+
+A small React page (in the `frontend` folder) shows the items from the API.
+
+**Requirement:** Node.js 18 or newer (`node --version` to check). Download: <https://nodejs.org/>
+
+Keep the Django server from step 3 running, then open a **second terminal** in the `django-seminar` folder:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173/> in your browser. The page loads the items from `http://127.0.0.1:8000/api/items/` (the dev server forwards `/api` requests to Django, so no extra setup is needed).
+
+Stop it with `Ctrl + C`. If you see "Could not load items", make sure the Django server is running.
 
 ## Troubleshooting
 

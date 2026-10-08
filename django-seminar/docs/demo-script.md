@@ -16,8 +16,7 @@ Use this while presenting the slides (slide 27, "Demo: Item API with CRUD", onwa
 3. **Read one.** Open `/api/items/<id>/` using the new item's id.
 4. **Update.** On that page edit a value and click **PUT**.
 5. **Delete.** Click **DELETE**, then reload `/api/items/` to show it is gone.
-6. **Search.** Open `/api/items/?search=pen`.
-7. **Validation.** POST an item with an empty name. Show the `400 Bad Request` error JSON.
+6. **Validation.** POST an item with an empty name. Show the `400 Bad Request` error JSON.
 
 Say: *"Each of these is one URL in `urls.py`, one function in `views.py`, one serializer and the Item model."*
 
@@ -63,9 +62,16 @@ Optional live change: add `warranty_months = models.PositiveIntegerField(default
 3. Use the **Action** dropdown: select items and run *Mark selected items as unavailable*.
 4. In `items/admin.py` comment out `list_filter = ...`, reload the page, and show the sidebar disappear. Restore it.
 
+## Part 4b. React frontend (2 minutes)
+
+1. Second terminal: `cd frontend`, `npm install` (once), `npm run dev`.
+2. Open <http://localhost:5173/>. The same items appear as cards.
+3. Add an item in the admin and refresh the React page to show it updates.
+4. Open `frontend/src/App.jsx` and point at the `fetch("/api/items/")` call.
+
 ## Part 5. Security quick demo (2 minutes)
 
-1. Open `/api/items/?search='; DROP TABLE items_item; --`. The list is empty, nothing breaks (the ORM treats it as text).
+1. In the browsable API form, create an item named `'; DROP TABLE items_item; --`. It is saved as plain text and the table is fine (the ORM sends values as parameters).
 2. Run `python manage.py test` and show all tests passing, including the CSRF and SQL injection tests.
 
 ## If something goes wrong

@@ -44,21 +44,15 @@ class ItemApiTests(TestCase):
     def test_missing_item_is_404(self):
         self.assertEqual(self.client.get("/api/items/999/").status_code, 404)
 
-    def test_search(self):
-        Item.objects.create(name="Notebook", price="60")
-        Item.objects.create(name="Pen", price="10")
-        response = self.client.get("/api/items/", {"search": "note"})
-        self.assertContains(response, "Notebook")
-        self.assertNotContains(response, "Pen")
 
 
 class SecurityTests(TestCase):
     def test_sql_injection_string_is_just_text(self):
-        """The ORM sends the search text as a parameter, never as SQL."""
-        Item.objects.create(name="Keep me", price="1")
-        response = self.client.get("/api/items/", {"search": "'; DROP TABLE items_item; --"})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(Item.objects.count(), 1)
+        """The ORM sends values as parameters, so SQL in the input is stored as plain text."""
+        attack = "'; DROP TABLE items_item; --"
+        response = self.client.post("/api/items/", {"name": attack, "price": "1"})
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(Item.objects.get().name, attack)  # the table still exists
 
     def test_csrf_is_enforced_on_forms(self):
         """A POST without the CSRF token is rejected (admin login form)."""

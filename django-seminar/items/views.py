@@ -19,14 +19,10 @@ from .serializers import ItemSerializer
 
 @api_view(["GET", "POST"])
 def item_list(request):
-    """GET  /api/items/        -> list items (optional ?search=pen)
-    POST /api/items/        -> create an item"""
+    """GET  /api/items/   -> list all items
+    POST /api/items/   -> create an item"""
     if request.method == "GET":
         items = Item.objects.all()
-        search = request.query_params.get("search", "").strip()
-        if search:
-            # The ORM passes `search` as a PARAMETER, so SQL injection is not possible.
-            items = items.filter(name__icontains=search)
         return Response(ItemSerializer(items, many=True).data)
 
     serializer = ItemSerializer(data=request.data)
