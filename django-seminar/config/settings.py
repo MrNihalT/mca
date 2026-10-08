@@ -69,9 +69,9 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # Project-wide template folder (shared base.html lives here).
-        "DIRS": [BASE_DIR / "templates"],
-        # Also look for a templates/ folder inside each installed app.
+        # Our API returns JSON, so we have no templates of our own.
+        # This setting is still required: the admin panel uses templates.
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -153,7 +153,6 @@ USE_TZ = True  # store datetimes in UTC, show them in TIME_ZONE
 # 8. STATIC FILES (CSS/JS shipped with the code) and MEDIA FILES (user uploads)
 # ---------------------------------------------------------------------------
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Uploaded files (e.g. the image on a task) are saved here ...
 MEDIA_ROOT = BASE_DIR / "media"
@@ -168,14 +167,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Django REST Framework configuration.
 REST_FRAMEWORK = {
-    # Anyone can read the API; only logged-in users can create/update/delete.
+    # For the seminar, anyone can use the API (no login needed).
+    # In a real project use IsAuthenticated or IsAuthenticatedOrReadOnly.
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+        "rest_framework.permissions.AllowAny",
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
 }
-
-# After login / logout, send the user back to the task list.
-LOGIN_REDIRECT_URL = "task_list"
-LOGOUT_REDIRECT_URL = "task_list"
