@@ -1,6 +1,6 @@
 # Live demo script (about 10-15 minutes)
 
-Use this while presenting the slides (slide 20 onwards in the deck). Everything is already in the repo, so the demo is only *running* and *showing* things.
+Use this while presenting the slides (slide 27, "Demo: Item API with CRUD", onwards in the deck). Everything is already in the repo, so the demo is only *running* and *showing* things.
 
 ## Before the seminar
 
