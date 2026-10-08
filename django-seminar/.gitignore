@@ -1,0 +1,19 @@
+# Virtual environment - every student creates their own
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local database and uploads (generated on your machine)
+db.sqlite3
+media/*
+!media/.gitkeep
+
+# Secrets / editor files
+.env
+.vscode/
+.idea/
+.DS_Store
