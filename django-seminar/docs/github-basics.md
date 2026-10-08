@@ -24,7 +24,7 @@ You only need three things: **get the code**, **run it**, and (optionally) **kee
 2. Open a terminal (PowerShell on Windows) and run:
 
 ```bash
-git clone https://github.com/<your-username>/mca.git
+git clone https://github.com/MrNihalT/mca.git
 cd mca/django-seminar
 ```
 
