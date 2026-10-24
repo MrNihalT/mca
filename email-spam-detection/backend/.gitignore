@@ -1,7 +1,13 @@
 .venv/
+venv/
 __pycache__/
 *.py[cod]
-models/
+models/*
+!models/README.md
+!models/.gitkeep
+data/**/*.csv
 data/*.csv
+data/external/
 metrics.json
 .DS_Store
+.pytest_cache/

@@ -1,4 +1,4 @@
-"""FastAPI inference API for the trained email spam classifier."""
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 import joblib
@@ -9,22 +9,36 @@ from pydantic import BaseModel, Field
 BASE_DIR = Path(__file__).parent
 MODEL_PATH = BASE_DIR / "models" / "spam_model.joblib"
 
-app = FastAPI(title="Email Spam Detection API", version="1.0.0",
-              description="Classifies pasted email subject/body text as spam or ham.")
+model = None
+
+def load_model():
+    global model
+    if MODEL_PATH.exists():
+        model = joblib.load(MODEL_PATH)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    load_model()
+    yield
+
+app = FastAPI(
+    title="Email Spam Detection API",
+    version="1.0.0",
+    description="Classifies pasted email subject/body text as spam or ham.",
+    lifespan=lifespan,
+)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://email-spam-detection-beta.vercel.app"
+        "https://email-spam-detection-beta.vercel.app",
     ],
     allow_credentials=False,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
-
-model = None
 
 class EmailRequest(BaseModel):
     subject: str = Field(default="", max_length=500)
@@ -34,12 +48,6 @@ class PredictionResponse(BaseModel):
     prediction: str
     spam_probability: Optional[float] = None
     message: str
-
-@app.on_event("startup")
-def load_model():
-    global model
-    if MODEL_PATH.exists():
-        model = joblib.load(MODEL_PATH)
 
 @app.get("/")
 def root():

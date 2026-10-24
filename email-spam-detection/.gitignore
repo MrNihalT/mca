@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.env
+
+# Data & Models
+backend/data/**/*.csv
+backend/data/*.csv
+backend/data/external/
+backend/models/*
+!backend/models/README.md
+!backend/models/.gitkeep
+backend/metrics.json
+
+# OS
+.DS_Store

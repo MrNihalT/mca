@@ -1,0 +1,47 @@
+{
+  "dataset_name": "The Biggest Spam Ham Phish Email Dataset (250000+)",
+  "huggingface_id": "locuoco/the-biggest-spam-ham-phish-email-dataset-300000",
+  "source_url": "https://huggingface.co/datasets/locuoco/the-biggest-spam-ham-phish-email-dataset-300000/resolve/main/df.csv",
+  "original_provenance": "Kaggle: akshatsharma2/the-biggest-spam-ham-phish-email-dataset-300000",
+  "license": "MIT",
+  "date_prepared": "2026-10-24T08:26:24.604330+00:00",
+  "raw_file_name": "large_emails.csv",
+  "raw_total_rows": 365448,
+  "raw_label_definition": {
+    "0": "ham (legitimate personal and business emails, Enron, meetings, schedules)",
+    "1": "phish (unsolicited malicious credential/payment phishing)",
+    "2": "spam (unsolicited commercial advertisements, prize scams)"
+  },
+  "binary_mapping_policy": {
+    "ham (0)": "ham",
+    "phish (1)": "spam (malicious unsolicited mail is classified as spam in binary detector)",
+    "spam (2)": "spam"
+  },
+  "records_removed": {
+    "exact_duplicates": 85743,
+    "missing_or_short_text": 554,
+    "invalid_labels": 0
+  },
+  "total_unique_records": 279151,
+  "unique_original_distribution": {
+    "ham": 127973,
+    "spam": 108342,
+    "phish": 42836
+  },
+  "unique_binary_distribution": {
+    "spam": 151178,
+    "ham": 127973
+  },
+  "prepared_file": "prepared_emails.csv",
+  "prepared_rows": 80000,
+  "prepared_label_distribution": {
+    "spam": 40000,
+    "ham": 40000
+  },
+  "prepared_original_label_distribution": {
+    "ham": 40000,
+    "spam": 28537,
+    "phish": 11463
+  },
+  "random_seed": 42
+}
