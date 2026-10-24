@@ -1,0 +1,95 @@
+{
+  "best_model": "Logistic Regression",
+  "dataset_rows_after_cleaning": 6098,
+  "train_rows": 4878,
+  "test_rows": 1220,
+  "models": {
+    "Multinomial Naive Bayes": {
+      "accuracy": 0.9459,
+      "precision_spam": 0.9313,
+      "recall_spam": 0.8789,
+      "f1_spam": 0.9043,
+      "classification_report": {
+        "ham": {
+          "precision": 0.9514124293785311,
+          "recall": 0.9734104046242774,
+          "f1-score": 0.9622857142857143,
+          "support": 865.0
+        },
+        "spam": {
+          "precision": 0.9313432835820895,
+          "recall": 0.8788732394366198,
+          "f1-score": 0.9043478260869565,
+          "support": 355.0
+        },
+        "accuracy": 0.9459016393442623,
+        "macro avg": {
+          "precision": 0.9413778564803104,
+          "recall": 0.9261418220304486,
+          "f1-score": 0.9333167701863354,
+          "support": 1220.0
+        },
+        "weighted avg": {
+          "precision": 0.9455726369541566,
+          "recall": 0.9459016393442623,
+          "f1-score": 0.9454267386213216,
+          "support": 1220.0
+        }
+      },
+      "confusion_matrix_labels_ham_spam": [
+        [
+          842,
+          23
+        ],
+        [
+          43,
+          312
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "accuracy": 0.9844,
+      "precision_spam": 0.9693,
+      "recall_spam": 0.9775,
+      "f1_spam": 0.9734,
+      "classification_report": {
+        "ham": {
+          "precision": 0.9907192575406032,
+          "recall": 0.9872832369942196,
+          "f1-score": 0.9889982628836133,
+          "support": 865.0
+        },
+        "spam": {
+          "precision": 0.9692737430167597,
+          "recall": 0.9774647887323944,
+          "f1-score": 0.9733520336605891,
+          "support": 355.0
+        },
+        "accuracy": 0.9844262295081967,
+        "macro avg": {
+          "precision": 0.9799965002786815,
+          "recall": 0.982374012863307,
+          "f1-score": 0.9811751482721012,
+          "support": 1220.0
+        },
+        "weighted avg": {
+          "precision": 0.9844789643799766,
+          "recall": 0.9844262295081967,
+          "f1-score": 0.9844454666752743,
+          "support": 1220.0
+        }
+      },
+      "confusion_matrix_labels_ham_spam": [
+        [
+          854,
+          11
+        ],
+        [
+          8,
+          347
+        ]
+      ]
+    }
+  },
+  "note": "Metrics are from a held-out random split. Performance on new or modern emails may differ. Predicted probabilities are not necessarily calibrated."
+}
